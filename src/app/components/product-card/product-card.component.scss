@@ -1,0 +1,366 @@
+@use '../../../theme/variables.scss' as *;
+@use '../../../theme/mixins.scss' as *;
+
+.product-card {
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.6);
+  border-radius: $spacing-md;
+  margin-bottom: $spacing-xl;
+
+  ion-card-content {
+    padding: $spacing-lg;
+
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: $spacing-lg;
+
+      .product-info {
+        flex: 1;
+        padding-right: $spacing-md;
+
+        .product-name {
+          color: rgba(248, 250, 252, 0.95);
+          font-weight: 800;
+          font-size: 1.3rem;
+          margin: 0 0 $spacing-xs 0;
+          line-height: 1.2;
+        }
+
+        .product-category {
+          color: rgba(203, 213, 225, 0.9);
+          font-size: 0.85rem;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: $spacing-xs;
+          padding: $spacing-xs $spacing-md;
+          background: rgba(16, 185, 129, 0.15);
+          border-radius: $radius-lg;
+          border: 2px solid rgba(16, 185, 129, 0.3);
+          font-weight: 600;
+          width: fit-content;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+
+          ion-icon {
+            font-size: 1rem;
+            color: #10b981;
+          }
+        }
+      }
+
+      .product-actions {
+        display: flex;
+        gap: $spacing-xs;
+        flex-shrink: 0;
+
+        ion-button {
+          --padding-start: #{$spacing-sm};
+          --padding-end: #{$spacing-sm};
+          --min-height: 40px;
+          font-size: 0.9rem;
+          
+          &[color="primary"] {
+            @include elegant-button($color-green-primary);
+          }
+          
+          &[color="danger"] {
+            @include elegant-button(#ef4444);
+          }
+        }
+      }
+    }
+
+    .product-details {
+      background: rgba(51, 65, 85, 0.6);
+      border-radius: $radius-xl;
+      padding: $spacing-xl;
+      border: 2px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(20px);
+      margin-top: $spacing-lg;
+      
+      .detail-row {
+        display: flex;
+        gap: $spacing-md;
+        margin-bottom: $spacing-md;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .detail-item {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: $spacing-sm;
+          background: rgba(30, 41, 59, 0.5);
+          padding: $spacing-md;
+          border-radius: $radius-md;
+          border: 1px solid rgba(148, 163, 184, 0.2);
+          
+          &.full-width {
+            flex: 2;
+          }
+
+          .detail-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            font-size: 1.2rem;
+          }
+
+          .detail-info {
+            flex: 1;
+            min-width: 0;
+
+            .detail-label {
+              display: block;
+              font-size: 0.75rem;
+              color: rgba(203, 213, 225, 0.7);
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin-bottom: 6px;
+            }
+
+            .detail-value {
+              display: block;
+              font-size: 1.1rem;
+              color: rgba(248, 250, 252, 0.95);
+              font-weight: 800;
+              line-height: 1.2;
+              
+              &.stock-value {
+                &.low-stock {
+                  color: $color-amber-primary;
+                }
+                &.normal-stock {
+                  color: $color-green-primary;
+                }
+              }
+              
+              &.total-value {
+                color: $color-blue-primary;
+                font-weight: 900;
+                font-size: 1.2rem;
+              }
+            }
+          }
+
+          .status-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+    }
+
+    .product-photo-section {
+      margin-top: $spacing-md;
+      padding-top: $spacing-md;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+      .photo-header { 
+        display: flex; 
+        align-items: center; 
+        gap: $spacing-xs; 
+        margin-bottom: $spacing-sm; 
+      }
+      
+      .photo-icon { 
+        font-size: 1.1rem; 
+        color: $color-green-primary; 
+      }
+      
+      .photo-label { 
+        font-size: 0.85rem; 
+        color: $color-gray-light; 
+        font-weight: 600; 
+        text-transform: uppercase; 
+      }
+      
+      .product-image { 
+        width: 100%; 
+        max-width: 200px; 
+        height: 150px; 
+        object-fit: cover; 
+        border-radius: $radius-sm; 
+        border: 2px solid rgba($color-green-primary, 0.3); 
+      }
+      
+      .photo-actions { 
+        display: flex; 
+        gap: $spacing-xs; 
+        margin-top: $spacing-xs;
+      }
+      
+      .no-photo-container {
+        @include stats-item();
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+
+        .no-photo-icon {
+          font-size: 2.5rem;
+          color: $color-gray-light;
+          margin-bottom: $spacing-xs;
+        }
+
+        .no-photo-text {
+          color: $color-gray-light;
+          font-size: 0.9rem;
+          margin: 0 0 $spacing-sm 0;
+        }
+      }
+    }
+  }
+}
+
+// 📱 RESPONSIVE MOBILE PARA PRODUCT CARDS
+@media screen and (max-width: 768px) {
+  .product-card {
+    margin-bottom: $spacing-md !important;
+    
+    ion-card-content {
+      padding: $spacing-md !important;
+    }
+    
+    .product-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+      margin-bottom: $spacing-md;
+      
+      .product-info {
+        width: 100%;
+        padding-right: 0;
+        
+        .product-name {
+          font-size: 1.1rem;
+          margin-bottom: $spacing-sm;
+        }
+        
+        .product-category {
+          font-size: 0.8rem;
+          padding: $spacing-xs;
+        }
+      }
+      
+      .product-actions {
+        width: 100%;
+        justify-content: space-between;
+        
+        ion-button {
+          flex: 1;
+          margin: 0 $spacing-xs;
+          font-size: 0.85rem;
+        }
+      }
+    }
+    
+    .product-details {
+      padding: $spacing-md;
+      
+      .detail-row {
+        flex-direction: column;
+        gap: $spacing-sm;
+        
+        .detail-item {
+          .detail-label {
+            font-size: 0.8rem;
+          }
+          
+          .detail-value {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+    
+    .product-photo-section {
+      .product-image {
+        max-width: 150px;
+        height: 120px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .product-card {
+    margin-bottom: $spacing-sm !important;
+    border-radius: 12px !important;
+    
+    ion-card-content {
+      padding: $spacing-sm !important;
+    }
+    
+    .product-header {
+      .product-info {
+        .product-name {
+          font-size: 1rem;
+        }
+        
+        .product-category {
+          font-size: 0.75rem;
+          padding: 4px 8px;
+        }
+      }
+      
+      .product-actions {
+        ion-button {
+          font-size: 0.8rem;
+          --min-height: 36px;
+        }
+      }
+    }
+    
+    .product-details {
+      padding: $spacing-sm;
+      
+      .detail-item {
+        .detail-icon {
+          font-size: 0.9rem;
+        }
+        
+        .detail-label {
+          font-size: 0.75rem;
+        }
+        
+        .detail-value {
+          font-size: 0.85rem;
+        }
+      }
+    }
+    
+    .product-photo-section {
+      .product-image {
+        max-width: 120px;
+        height: 100px;
+      }
+      
+      .photo-actions {
+        flex-direction: column;
+        
+        ion-button {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

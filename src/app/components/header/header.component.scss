@@ -1,0 +1,337 @@
+.header-container {
+  width: 100%;
+}
+
+/* === LOGIN HEADER === */
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 8px 8px 8px;
+  text-align: center;
+}
+
+.app-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+}
+
+.logo-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.main-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  margin: 0 0 10px 0;
+  font-weight: 400;
+}
+
+.brand-tagline {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 2px 0 0 0;
+  font-weight: 300;
+}
+
+.login-form-header {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+.login-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.login-description {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* === HOME HEADER === */
+.home-header {
+  padding: 20px;
+}
+
+.welcome-card {
+  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.welcome-header .subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+.welcome-header .description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* === GENERIC HEADER === */
+.generic-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo-section {
+  margin-bottom: 20px;
+}
+
+.title-section {
+  margin-bottom: 15px;
+}
+
+.header-title {
+  color: var(--ion-color-primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.header-subtitle {
+  color: var(--ion-color-medium);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.header-description {
+  color: var(--ion-color-medium);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.back-section {
+  margin-top: 10px;
+}
+
+.back-button {
+  --color: var(--ion-color-primary);
+}
+
+/* === LOGO STYLES === */
+.logo-section {
+  margin-bottom: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logo-section {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.logo-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  padding: 8px;
+}
+
+.logo-text {
+  text-align: left;
+}
+
+.app-name {
+  display: none; /* Ocultar nombre como solicitaste */
+}
+
+.app-tagline {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.05rem;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+/* === ADMIN HEADER === */
+.admin-header {
+  padding: 16px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 16px;
+}
+
+.admin-welcome-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.admin-header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  
+  ion-button {
+    --border-radius: 25px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: none;
+    min-height: 40px;
+    
+    ion-icon {
+      font-size: 1.1rem;
+      margin-right: 6px;
+    }
+  }
+}
+
+// Responsive para pantallas pequeñas
+@media (max-width: 768px) {
+  .admin-header-content {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .admin-actions {
+    margin-left: 0;
+    justify-content: center;
+    
+    ion-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+.admin-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  
+  ion-icon {
+    font-size: 1.8rem;
+    color: white;
+  }
+}
+
+.admin-info {
+  flex: 1;
+  min-width: 0;
+  
+  h2 {
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+  }
+  
+  .admin-name {
+    color: #ff6b35;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    ion-icon {
+      font-size: 1rem;
+    }
+  }
+  
+  .admin-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+  }
+}

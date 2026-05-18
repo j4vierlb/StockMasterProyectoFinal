@@ -1,0 +1,197 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+// StockMaster Theme Variables - Esquema Moderno Azul-Cyan-Púrpura
+$color-primary: #667eea;
+$color-secondary: #f093fb;
+$color-accent: #4facfe;
+$color-background: #0f0c29;
+$color-surface: rgba(255, 255, 255, 0.12);
+$color-light: #a8edea;
+$color-white: #fff;
+$color-success: #00d4aa;
+$color-warning: #ffc947;
+$color-danger: #ff6b6b;
+
+// Gradientes modernos y vibrantes
+$gradient-primary: linear-gradient(135deg, #0f0c29 0%, #24243e 25%, #302b63 50%, #667eea 75%, #4facfe 100%);
+$gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+$gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 50%, rgba(240, 147, 251, 0.15) 100%);
+$gradient-button: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+
+// Mixin para aplicar el tema consistente
+@mixin stockmaster-theme {
+  :host, ion-content {
+    --background: #{$gradient-primary} !important;
+    min-height: 100vh;
+    display: block;
+  }
+  
+  .page-container {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 50%, rgba(240, 147, 251, 0.25) 100%);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px;
+    box-shadow: 
+      0 8px 32px rgba(102, 126, 234, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    min-height: calc(100vh - 40px);
+    box-sizing: border-box;
+    
+    // Responsive para móviles
+    @media (max-width: 768px) {
+      margin: 8px;
+      padding: 16px;
+      border-radius: 16px;
+      min-height: calc(100vh - 16px);
+      font-size: 16px; // Tamaño base más grande para móvil
+    }
+    
+    @media (max-width: 480px) {
+      margin: 4px;
+      padding: 12px;
+      border-radius: 12px;
+      min-height: calc(100vh - 8px);
+      font-size: 18px; // Aún más grande para pantallas muy pequeñas
+    }
+  }
+  
+  ion-toolbar {
+    --background: #{$gradient-secondary} !important;
+    --color: white !important;
+    
+    @media (max-width: 768px) {
+      --min-height: 56px;
+      font-size: 18px;
+    }
+  }
+  
+  // Estilos responsive globales
+  @media (max-width: 768px) {
+    h1, h2, h3 {
+      font-size: 1.5rem !important;
+    }
+    
+    h4, h5, h6 {
+      font-size: 1.2rem !important;
+    }
+    
+    p, span, div {
+      font-size: 1rem !important;
+      line-height: 1.5;
+    }
+    
+    ion-button {
+      --padding-top: 14px;
+      --padding-bottom: 14px;
+      --padding-start: 20px;
+      --padding-end: 20px;
+      font-size: 1rem !important;
+      min-height: 48px;
+    }
+    
+    ion-item {
+      --min-height: 56px;
+      font-size: 1rem;
+    }
+    
+    ion-input, ion-select {
+      font-size: 1rem !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.1rem !important;
+    }
+    
+    h2 {
+      font-size: 1rem !important;
+    }
+    
+    h3 {
+      font-size: 0.95rem !important;
+    }
+    
+    h4, h5, h6 {
+      font-size: 0.9rem !important;
+    }
+    
+    p, span, div {
+      font-size: 0.85rem !important;
+    }
+    
+    ion-button {
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      font-size: 0.85rem !important;
+      min-height: 44px;
+    }
+    
+    ion-item {
+      --min-height: 50px;
+    }
+  }
+}
+
+// 🎨 VARIABLES OPTIMIZADAS PARA REUTILIZACIÓN
+// Colores del nuevo sistema de diseño
+$color-green-primary: #10b981;
+$color-green-secondary: #059669;
+$color-green-tertiary: #047857;
+
+$color-gray-primary: #1f2937;
+$color-gray-secondary: #374151;
+$color-gray-tertiary: #4b5563;
+$color-gray-light: #6b7280;
+
+$color-blue-primary: #3b82f6;
+$color-blue-secondary: #60a5fa;
+$color-blue-tertiary: #93c5fd;
+$color-indigo-primary: #6366f1;
+$color-red-primary: #ef4444;
+$color-purple-primary: #a855f7;
+
+$color-amber-primary: #f59e0b;
+$color-amber-secondary: #fbbf24;
+
+// Espaciados consistentes
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 20px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+
+// Border radius consistentes
+$radius-sm: 12px;
+$radius-md: 16px;
+$radius-lg: 20px;
+$radius-xl: 24px;
+$radius-xxl: 28px;
+
+// Sombras consistentes
+$shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 8px 25px rgba(16, 185, 129, 0.15);
+$shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+$shadow-xl: 0 32px 80px rgba(0, 0, 0, 0.12);
+
+// Transiciones consistentes
+$transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Alias / compat: algunas páginas usan $transition-smooth
+$transition-smooth: $transition-normal;
+
+// Alias para color de borde por compatibilidad con inclusiones antiguas
+$border-color: $color-surface;
+
+// Z-index consistentes
+$z-header: 1000;
+$z-overlay: 2000;
+$z-modal: 3000;
+$z-toast: 4000;

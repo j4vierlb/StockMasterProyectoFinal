@@ -1,0 +1,27 @@
+<ion-card class="actions-card">
+  <ion-card-header>
+    <ion-card-title>Acciones Rápidas</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+<div class="actions-card">
+  <div class="actions-grid">
+    <ion-button class="action-button" expand="block" color="primary" (click)="navigateTo('/products')">
+      <ion-icon name="cube-outline" slot="start"></ion-icon>
+      PRODUCTOS
+    </ion-button>
+    <ion-button class="action-button" expand="block" color="secondary" (click)="navigateTo('/categories')">
+      <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+      CATEGORÍAS
+    </ion-button>
+    <ion-button class="action-button" expand="block" color="tertiary" (click)="navigateTo('/movements')">
+      <ion-icon name="swap-horizontal-outline" slot="start"></ion-icon>
+      MOVIMIENTOS
+    </ion-button>
+    <ion-button class="action-button" expand="block" color="success" (click)="showQuickActions()">
+      <ion-icon name="flash-outline" slot="start"></ion-icon>
+      ACCIONES RÁPIDAS
+    </ion-button>
+  </div>
+</div>
+  </ion-card-content>
+</ion-card>

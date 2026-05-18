@@ -1,0 +1,587 @@
+@use '../../../theme/variables.scss' as *;
+@use '../../../theme/mixins.scss' as *;
+
+:host { @include page-background(); }
+
+@keyframes slideInFromBottom { 0% { opacity: 0; transform: translate3d(0, 30px, 0); } 100% { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes floatingAnimation { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -5px, 0); } }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes liquidShine { 0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; } 50% { transform: translateX(0%) skewX(-15deg); opacity: 1; } 100% { transform: translateX(100%) skewX(-15deg); opacity: 0; } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.login-content {
+  --padding: 0;
+  background: radial-gradient(circle at 15% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 50%), radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 50%), linear-gradient(135deg, #0f172a 0%, #1e293b 35%, #1e3a8a 70%, #0f172a 100%);
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0.5rem !important;
+  box-sizing: border-box;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%), radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
+    background-size: 60px 60px, 40px 40px;
+    pointer-events: none;
+  }
+  
+  // 📱 RESPONSIVE - Aprovecha más el espacio vertical
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 0.3rem !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-top: 5vh !important;
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 0.3rem 0.2rem !important;
+    min-height: 100vh !important;
+    padding-top: 4vh !important;
+  }
+  
+  @media screen and (max-width: 375px) {
+    padding: 0.2rem 0.1rem !important;
+    padding-top: 3vh !important;
+  }
+  
+  @media screen and (max-height: 700px) {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding: 0.2rem 0.1rem !important;
+    padding-top: 2vh !important;
+  }
+  
+  @media screen and (orientation: portrait) and (max-width: 768px) {
+    padding: 0.3rem 0.2rem !important;
+    padding-top: 4vh !important;
+  }
+}
+
+.login-container {
+  @include elegant-card();
+  background: rgba(30, 41, 59, 0.75);
+  border: 2px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  margin: 0 auto !important;
+  max-width: 450px;
+  width: 100% !important;
+  position: relative;
+  z-index: 10;
+  animation: slideInFromBottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, rgba(16, 185, 129, 0.2) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: floatingAnimation 8s ease-in-out infinite;
+  }
+  
+  // 📱 RESPONSIVE - Maximiza el ancho y reduce padding
+  @media screen and (max-width: 768px) {
+    max-width: 96% !important;
+    width: 96% !important;
+    padding: 1.8rem 1.5rem !important;
+    border-radius: 20px !important;
+    margin: 0 auto !important;
+  }
+  
+  @media screen and (max-width: 480px) {
+    max-width: 95% !important;
+    width: 98% !important;
+    padding: 2.2rem 2rem !important;
+    border-radius: 18px !important;
+    
+    &::after {
+      width: 100px !important;
+      height: 100px !important;
+      top: -50px !important;
+      right: -50px !important;
+    }
+  }
+  
+  @media screen and (max-width: 375px) {
+    max-width: 97% !important;
+    width: 97% !important;
+    padding: 2rem 1.8rem !important;
+    border-radius: 16px !important;
+  }
+  
+  @media screen and (max-width: 320px) {
+    max-width: 96% !important;
+    width: 96% !important;
+    padding: 1.8rem 1.5rem !important;
+    border-radius: 14px !important;
+  }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  .brand-section {
+    margin-bottom: 2rem;
+    
+    .logo-icon {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #0ea5e9 100%);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4), 0 4px 12px rgba(59, 130, 246, 0.3);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+        transform: translateX(-100%);
+        animation: liquidShine 3s ease-in-out infinite;
+        border-radius: 22px;
+      }
+      
+      ion-icon {
+        font-size: 3rem;
+        color: #ffffff;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        z-index: 1;
+        position: relative;
+      }
+    }
+    
+    .brand-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .brand-tagline {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      background: rgba(71, 85, 105, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .welcome-text {
+    h1 { font-size: 1.8rem; font-weight: 700; color: rgba(255, 255, 255, 0.95); margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+    p { font-size: 1rem; color: rgba(255, 255, 255, 0.7); font-weight: 400; }
+  }
+}.login-form {
+  .form-group {
+    position: relative;
+    margin-bottom: 1.8rem;
+    
+    .input-container {
+      position: relative;
+      
+      .input-icon {
+        position: absolute;
+        left: 20px; top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        color: rgba(148, 163, 184, 0.7);
+        font-size: 1.2rem;
+        transition: $transition-normal;
+      }
+      
+      .form-input {
+        @include elegant-searchbar();
+        background: rgba(241, 245, 249, 0.95);
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        padding: 16px 20px 16px 55px;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #475569;
+        width: 100%;
+        
+        &::placeholder { color: rgba(148, 163, 184, 0.7); font-weight: 400; }
+        
+        &:focus {
+          background: rgba(248, 250, 252, 1);
+          border: 1px solid rgba(6, 182, 212, 0.5);
+          box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+          
+          + .input-icon { color: #06b6d4; transform: translateY(-50%) scale(1.05); }
+        }
+      }
+    }
+    
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      
+      .input-container { flex: 1; .form-input { padding-right: 70px; } }
+      
+      .password-toggle-btn {
+        position: absolute;
+        right: 4px; top: 50%;
+        transform: translateY(-50%);
+        background: #06b6d4;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.2rem;
+        padding: 12px;
+        cursor: pointer;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px; min-height: 44px;
+        box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+        
+        &:hover { background: #0891b2; transform: translateY(-50%) scale(1.05); }
+        &:active { transform: translateY(-50%) scale(0.95); }
+        ion-icon { font-size: 20px; pointer-events: none; }
+      }
+    }
+  }
+  
+  .remember-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      
+      input[type="checkbox"] {
+        width: 18px; height: 18px;
+        border-radius: 6px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        background: transparent;
+        cursor: pointer;
+        
+        &:checked { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-color: #3b82f6; }
+      }
+      
+      label { color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; font-weight: 400; cursor: pointer; }
+    }
+    
+    .forgot-link {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 0;
+      
+      &:hover { text-decoration: underline; color: rgba(255, 255, 255, 1); }
+    }
+  }
+}
+
+.login-button {
+  background: rgba(71, 85, 105, 0.8);
+  border: none;
+  border-radius: 16px;
+  padding: 16px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  &:hover { 
+    background: rgba(71, 85, 105, 0.9); 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:active { transform: translateY(0px); }
+  
+  &:disabled {
+    background: rgba(71, 85, 105, 0.6);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+    
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 2px solid #ffffff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+    }
+  }
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 2rem;
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 1.5rem;
+    
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+    
+    span { padding: 0 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; font-weight: 500; }
+  }
+  
+  .register-link {
+    background: rgba(71, 85, 105, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 14px;
+    padding: 14px 0;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    
+    .register-text { color: rgba(255, 255, 255, 0.8); font-weight: 500; font-size: 0.95rem; }
+    
+    &:hover {
+      background: rgba(71, 85, 105, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// 📱 RESPONSIVE MEGA FORZADO - MÁS ANCHO Y POSICIÓN BAJA
+@media screen and (max-width: 768px) {
+  .login-container { 
+    padding: 2.5rem 2.2rem !important; 
+    margin: 0 auto !important; 
+    border-radius: 20px !important; 
+    width: 99% !important; 
+    max-width: 520px !important;
+  }
+  
+  .login-header { 
+    margin-bottom: 2.5rem !important; 
+    margin-top: 1rem !important; // Espaciado extra arriba
+    
+    .brand-section { 
+      margin-bottom: 2rem !important; 
+      padding-top: 0.8rem !important; // Logo un poco más abajo
+      
+      .logo-icon { 
+        width: 90px !important; 
+        height: 90px !important; 
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .logo-icon ion-icon { 
+        font-size: 3rem !important; 
+      }
+      
+      .brand-name { 
+        font-size: 2rem !important; 
+      }
+    }
+  }
+  
+  .form-group { 
+    margin-bottom: 1.8rem !important; 
+  }
+  
+  .form-group .form-input { 
+    padding: 18px 22px 18px 58px !important; 
+    font-size: 1rem !important; 
+    min-height: 56px !important;
+  }
+  
+  .login-button { 
+    padding: 18px 0 !important; 
+    font-size: 1.1rem !important; 
+    min-height: 56px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-container { 
+    width: 98% !important; 
+    max-width: 480px !important;
+    padding: 2.2rem 2rem !important;
+  }
+  
+  .login-header { 
+    margin-top: 0.8rem !important;
+    
+    .brand-section { 
+      padding-top: 0.6rem !important;
+      
+      .logo-icon { 
+        width: 85px !important; 
+        height: 85px !important; 
+      }
+      
+      .logo-icon ion-icon { 
+        font-size: 2.8rem !important; 
+      }
+      
+      .brand-name { 
+        font-size: 1.8rem !important; 
+      }
+    }
+  }
+  
+  .form-group .form-input { 
+    padding: 16px 20px 16px 55px !important; 
+    font-size: 0.95rem !important; 
+    min-height: 52px !important;
+  }
+  
+  .login-button { 
+    padding: 16px 0 !important; 
+    font-size: 1.05rem !important; 
+    min-height: 52px !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .login-container { 
+    width: 97% !important; 
+    padding: 2rem 1.8rem !important;
+  }
+  
+  .login-header { 
+    margin-top: 0.6rem !important;
+    
+    .brand-section { 
+      padding-top: 0.4rem !important;
+      
+      .logo-icon { 
+        width: 80px !important; 
+        height: 80px !important; 
+      }
+      
+      .logo-icon ion-icon { 
+        font-size: 2.5rem !important; 
+      }
+      
+      .brand-name { 
+        font-size: 1.6rem !important; 
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .login-container { 
+    width: 96% !important; 
+    padding: 1.8rem 1.5rem !important;
+  }
+  
+  .login-header { 
+    margin-top: 0.4rem !important;
+    
+    .brand-section { 
+      padding-top: 0.2rem !important;
+      
+      .logo-icon { 
+        width: 75px !important; 
+        height: 75px !important; 
+      }
+      
+      .logo-icon ion-icon { 
+        font-size: 2.2rem !important; 
+      }
+      
+      .brand-name { 
+        font-size: 1.4rem !important; 
+      }
+    }
+  }
+  
+  .form-group .form-input { 
+    padding: 14px 18px 14px 50px !important; 
+    font-size: 0.9rem !important; 
+    min-height: 48px !important;
+  }
+  
+  .login-button { 
+    padding: 14px 0 !important; 
+    font-size: 1rem !important; 
+    min-height: 48px !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .login-content { --padding-top: 10px; --padding-bottom: 10px; justify-content: flex-start; align-items: stretch; }
+  .login-header { margin-bottom: 1.5rem; }
+  .login-header .brand-section { margin-bottom: 1rem; }
+  .login-header .brand-section .logo-icon { width: 80px; height: 80px; margin-bottom: 1rem; }
+  .login-header .brand-section .brand-name { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .login-header .brand-section .brand-tagline { font-size: 0.8rem; }
+  .login-header .welcome-text h1 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+  .login-header .welcome-text p { font-size: 0.85rem; }
+  .login-form .form-group { margin-bottom: 1rem; }
+  .login-form .form-group .input-container { min-height: 48px; }
+  .login-form .form-group .input-container .form-input { font-size: 16px; padding: 12px 45px 12px 45px; }
+  .login-form .remember-section { margin: 1rem 0; font-size: 0.85rem; }
+  .login-form .login-button { padding: 12px 20px; font-size: 0.95rem; margin-top: 0.5rem; }
+  .auth-links { margin-top: 1rem; padding-top: 15px; }
+}
+
+@media (max-height: 600px), (orientation: landscape) and (max-height: 500px) {
+  .login-header { margin-bottom: 1rem; }
+  .login-header .brand-section { margin-bottom: 0.5rem; }
+  .login-header .brand-section .logo-icon { width: 50px; height: 50px; margin-bottom: 0.5rem; }
+  .login-header .brand-section .brand-name { font-size: 1.3rem; }
+  .login-header .brand-section .brand-tagline { font-size: 0.75rem; }
+  .login-header .welcome-text h1 { font-size: 1.1rem; }
+  .login-header .welcome-text p { font-size: 0.8rem; }
+  .login-form .form-group { margin-bottom: 0.75rem; }
+  .login-form .remember-section { margin: 0.75rem 0; }
+  .auth-links { margin-top: 0.75rem; padding-top: 10px; }
+}
+
+// Eliminar efectos nativos de Ionic
+ion-button, .password-toggle-btn, button { --ripple-color: transparent; --border-style: none; --box-shadow: none; }
+ion-input, ion-item { --border-style: none; --border-width: 0; --inner-border-width: 0; --highlight-color-focused: transparent; --highlight-color-invalid: transparent; --highlight-color-valid: transparent; --ripple-color: transparent; }
+
+// Validación
+.form-input.ng-invalid.ng-touched { border: 2px solid #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+.form-input.ng-valid.ng-touched { border: 2px solid #10b981; }

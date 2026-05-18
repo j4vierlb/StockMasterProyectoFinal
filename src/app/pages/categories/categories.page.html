@@ -1,0 +1,127 @@
+<ion-header class="glass-header">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" class="back-button">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="page-title">
+      <ion-icon name="pricetag-outline" class="title-icon"></ion-icon>
+      Categorías
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addCategory()" class="add-button">
+        <ion-icon name="add-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="glass-content">
+  
+  <!-- Stats rápidas -->
+  <div class="stats-section">
+    <ion-card class="stats-card">
+      <ion-card-content>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">{{ categories.length }}</div>
+            <div class="stat-label">Categorías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getTotalProducts() }}</div>
+            <div class="stat-label">Productos Total</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getCategoriesWithProducts() }}</div>
+            <div class="stat-label">Con Productos</div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Lista de categorías -->
+  <div class="categories-section">
+    <div *ngIf="isLoading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando categorías...</p>
+    </div>
+
+    <div *ngIf="!isLoading && categories.length === 0" class="empty-state">
+      <ion-card class="empty-card">
+        <ion-card-content>
+          <ion-icon name="pricetag-outline" class="empty-icon"></ion-icon>
+          <h3>No hay categorías</h3>
+          <p>Organiza tus productos creando categorías personalizadas.</p>
+          <ion-button (click)="addCategory()" color="primary" class="add-first-button">
+            <ion-icon name="add-outline" slot="start"></ion-icon>
+            Crear Categoría
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="!isLoading && categories.length > 0" class="categories-grid">
+      <ion-card *ngFor="let category of categories" class="category-card" [class]="'category-' + category.color">
+        <ion-card-content>
+          
+          <div class="category-header">
+            <div class="category-icon-container" [class]="'icon-' + category.color">
+              <ion-icon name="pricetag-outline" class="category-icon"></ion-icon>
+            </div>
+            <div class="category-actions">
+              <ion-button fill="clear" size="small" (click)="editCategory(category)" color="light">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" size="small" (click)="deleteCategory(category)" color="light">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+
+          <div class="category-content">
+            <h3 class="category-name">{{ category.name }}</h3>
+            <p class="category-description" *ngIf="category.description">
+              {{ category.description }}
+            </p>
+            <p class="category-description" *ngIf="!category.description">
+              Sin descripción
+            </p>
+          </div>
+
+          <div class="category-stats">
+            <div class="stat-item">
+              <ion-icon name="cube-outline" class="stat-icon"></ion-icon>
+              <div class="stat-info">
+                <span class="stat-value">{{ category.productCount }}</span>
+                <span class="stat-label">{{ category.productCount === 1 ? 'Producto' : 'Productos' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-footer">
+            <ion-button 
+              (click)="viewCategoryProducts(category)" 
+              fill="clear" 
+              size="small" 
+              class="view-products-button"
+              [disabled]="category.productCount === 0">
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Ver Productos
+            </ion-button>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <!-- Botón flotante para agregar -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addCategory()" color="primary" class="glass-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

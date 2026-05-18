@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descargar StockMaster APK</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+      color: #fff;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: rgba(0,0,0,0.6);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      max-width: 400px;
+      width: 90vw;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    #qr {
+      margin: 1.5rem 0;
+      display: none;
+    }
+    .download-btn {
+      background: #4e4376;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.2s;
+      margin-top: 1.5rem;
+      display: none;
+    }
+    .download-btn:hover {
+      background: #2b5876;
+    }
+    @media (min-width: 600px) {
+      #qr { display: block; }
+      .download-btn { display: none; }
+    }
+    @media (max-width: 599px) {
+      #qr { display: none; }
+      .download-btn { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StockMaster</h1>
+    <p>La app para gestionar tu inventario y movimientos de productos de forma fácil y rápida.</p>
+    <div id="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://drive.google.com/drive/folders/1HxNwncpF4CF1fsLwCBH2DM8XJ26r3bDl" alt="QR para descargar APK">
+      <p>Escanea el QR para descargar la app en tu dispositivo Android.</p>
+    </div>
+    <button class="download-btn" onclick="window.location.href='https://drive.google.com/drive/folders/1HxNwncpF4CF1fsLwCBH2DM8XJ26r3bDl'">Descargar APK</button>
+    <h2>Paso a paso para instalar:</h2>
+    <ol style="text-align:left;">
+      <li>Descarga el archivo APK desde el botón o QR.</li>
+      <li>Abre el archivo descargado en tu dispositivo Android.</li>
+      <li>Si es la primera vez, permite la instalación de apps desconocidas.</li>
+      <li>¡Listo! Ya puedes usar StockMaster.</li>
+    </ol>
+  </div>
+  <script>
+    // Si quieres que el QR apunte a una URL pública, reemplaza la URL en el src y en el botón
+  </script>
+</body>
+</html>

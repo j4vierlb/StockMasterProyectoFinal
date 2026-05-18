@@ -1,0 +1,83 @@
+<div class="header-container">
+  
+  <!-- HEADER TIPO LOGIN -->
+  <div *ngIf="headerType === 'login'" class="login-header">
+    <div class="app-title">StockMaster</div>
+    
+    <div class="logo-container" *ngIf="showLogo">
+      <div class="logo-box">
+        <ion-icon name="cube-outline" class="logo-icon"></ion-icon>
+      </div>
+    </div>
+    
+    <h1 class="main-title">{{ title }}</h1>
+    <p class="main-subtitle">Controla tu inventario y stock de manera inteligente ✨</p>
+  </div>
+
+  <!-- HEADER TIPO HOME (Welcome Card) -->
+  <div *ngIf="headerType === 'home'" class="home-header">
+    <div class="welcome-card">
+      <div class="welcome-header">
+        <h2>¡Bienvenido, {{ userName }}! <span>👋</span></h2>
+        <p class="subtitle">{{ subtitle }}</p>
+        <p class="description" *ngIf="description">{{ description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER GENÉRICO -->
+  <div *ngIf="headerType === 'generic'" class="generic-header">
+    <!-- Logo opcional -->
+    <div class="logo-section" *ngIf="showLogo">
+      <div class="logo-container">
+        <img src="assets/icon/favicon.png" alt="StockMaster Logo" class="logo-image">
+        <div class="logo-text">
+          <h2 class="app-name">StockMaster</h2>
+          <p class="app-tagline">Gestión Inteligente de Inventario</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Título y subtítulo -->
+    <div class="title-section">
+      <h1 class="header-title">{{ title }}</h1>
+      <p class="header-subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+      <p class="header-description" *ngIf="description">{{ description }}</p>
+    </div>
+    
+    <!-- Botón de regreso opcional -->
+    <div class="back-section" *ngIf="showBackButton">
+      <ion-button fill="clear" [routerLink]="backUrl" class="back-button">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Atrás
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- HEADER TIPO ADMIN -->
+  <div *ngIf="headerType === 'admin'" class="admin-header">
+    <div class="admin-welcome-card">
+      <div class="admin-header-content">
+        <div class="admin-icon">
+          <ion-icon name="settings-outline"></ion-icon>
+        </div>
+        <div class="admin-info">
+          <h2>Panel de Administración</h2>
+          <p class="admin-name">{{ userName }} <ion-icon name="shield-checkmark" color="warning"></ion-icon></p>
+          <p class="admin-subtitle">Gestión completa del sistema</p>
+        </div>
+        <div class="admin-actions">
+          <ion-button 
+            fill="solid" 
+            color="danger"
+            size="small"
+            (click)="onLogout()">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+            Cerrar Sesión
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

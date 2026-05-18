@@ -1,0 +1,168 @@
+<ion-header class="glass-header">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" class="back-button">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="page-title">
+      <ion-icon name="swap-horizontal-outline" class="title-icon"></ion-icon>
+      Movimientos
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addMovement()" class="add-button">
+        <ion-icon name="add-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="glass-content">
+  
+  <!-- Sección de búsqueda y filtros -->
+  <div class="search-section">
+    <ion-card class="search-card">
+      <ion-card-content>
+        <div class="search-container">
+          <ion-searchbar 
+            [(ngModel)]="searchTerm" 
+            (ionInput)="filterMovements()"
+            placeholder="Buscar movimientos..."
+            show-clear-button="focus"
+            class="glass-searchbar">
+          </ion-searchbar>
+          
+          <ion-select 
+            [(ngModel)]="selectedType" 
+            (ionChange)="filterMovements()"
+            interface="popover"
+            placeholder="Tipo"
+            class="type-filter">
+            <ion-select-option *ngFor="let type of movementTypes" [value]="type.value">
+              {{ type.label }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Stats rápidas -->
+  <div class="stats-section">
+    <ion-card class="stats-card">
+      <ion-card-content>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">{{ filteredMovements.length }}</div>
+            <div class="stat-label">Total</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getEntradasCount() }}</div>
+            <div class="stat-label">Entradas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getSalidasCount() }}</div>
+            <div class="stat-label">Salidas</div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Lista de movimientos -->
+  <div class="movements-section">
+    <div *ngIf="isLoading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando movimientos...</p>
+    </div>
+
+    <div *ngIf="!isLoading && filteredMovements.length === 0" class="empty-state">
+      <ion-card class="empty-card">
+        <ion-card-content>
+          <ion-icon name="swap-horizontal-outline" class="empty-icon"></ion-icon>
+          <h3>No hay movimientos</h3>
+          <p *ngIf="searchTerm">No se encontraron movimientos que coincidan con tu búsqueda.</p>
+          <p *ngIf="!searchTerm">Registra el primer movimiento de inventario.</p>
+          <ion-button (click)="addMovement()" color="primary" class="add-first-button">
+            <ion-icon name="add-outline" slot="start"></ion-icon>
+            Registrar Movimiento
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="!isLoading && filteredMovements.length > 0" class="movements-list">
+      <ion-card *ngFor="let movement of filteredMovements" class="movement-card" [class]="'movement-' + movement.type">
+        <ion-card-content>
+          
+          <div class="movement-header">
+            <div class="movement-info">
+              <div class="movement-type-container">
+                <ion-icon 
+                  [name]="getMovementIcon(movement.type)" 
+                  [color]="getMovementColor(movement.type)"
+                  class="movement-icon">
+                </ion-icon>
+                <div class="type-info">
+                  <span class="movement-type">{{ movement.type.toUpperCase() }}</span>
+                  <span class="movement-date">{{ formatDate(movement.date) }}</span>
+                </div>
+              </div>
+              
+              <div class="movement-actions">
+                <ion-button fill="clear" size="small" (click)="deleteMovement(movement)" color="danger">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="movement-details">
+            <div class="detail-row">
+              <div class="detail-item">
+                <ion-icon name="cube-outline" class="detail-icon"></ion-icon>
+                <div class="detail-info">
+                  <span class="detail-label">Producto</span>
+                  <span class="detail-value">{{ movement.productName }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-item">
+                <ion-icon name="layers-outline" class="detail-icon"></ion-icon>
+                <div class="detail-info">
+                  <span class="detail-label">Cantidad</span>
+                  <span class="detail-value quantity-value" [class]="'quantity-' + movement.type">
+                    <span *ngIf="movement.type === 'entrada'">+</span>
+                    <span *ngIf="movement.type === 'salida'">-</span>
+                    {{ movement.quantity }} unidades
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-item full-width">
+                <ion-icon name="document-text-outline" class="detail-icon"></ion-icon>
+                <div class="detail-info">
+                  <span class="detail-label">Motivo</span>
+                  <span class="detail-value">{{ movement.reason }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <!-- Botón flotante para agregar -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addMovement()" color="primary" class="glass-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

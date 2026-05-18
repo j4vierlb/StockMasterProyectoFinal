@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true" class="error-content">
+  <div class="error-container">
+    <div class="error-card">
+      <div class="error-icon-large">
+        <ion-icon name="warning-outline"></ion-icon>
+      </div>
+      
+      <ion-card-header>
+        <ion-card-title class="error-title">¡Oops! Error 404</ion-card-title>
+        <ion-card-subtitle class="error-subtitle">Página no encontrada</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="error-description">La página que buscas no existe o ha sido movida.</p>
+        <p class="error-description">Verifica la URL o navega a una sección válida.</p>
+        
+        <div class="action-buttons">
+          <ion-button expand="block" class="primary-button" (click)="goHome()">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            IR AL INICIO
+          </ion-button>
+          
+          <ion-button expand="block" class="secondary-button" (click)="goBack()">
+            <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+            VOLVER ATRÁS
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,9 @@
+// Capacitor settings gradle file
+
+include ':app'
+include ':capacitor-android'
+project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
+
+// Add any other Capacitor plugins here
+// include ':capacitor-plugin-name'
+// project(':capacitor-plugin-name').projectDir = new File('../node_modules/@capacitor-plugin-name/android')7

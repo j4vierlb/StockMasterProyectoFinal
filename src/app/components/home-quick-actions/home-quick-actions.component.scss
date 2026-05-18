@@ -1,0 +1,212 @@
+// Animaciones profesionales con glassmorphism
+@keyframes slideInFromBottom {
+	0% { 
+		opacity: 0; 
+		transform: translate3d(0, 20px, 0); 
+	}
+	100% { 
+		opacity: 1; 
+		transform: translate3d(0, 0, 0); 
+	}
+}
+
+@keyframes pulse {
+	0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+	50% { transform: translate3d(0, 0, 0) scale(1.02); }
+}
+
+@keyframes shimmer {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(100%); }
+}
+
+// Contenedor principal con glassmorphism premium
+.actions-card {
+	margin-bottom: 1.25rem;
+	
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(10px);
+	will-change: transform;
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	
+	box-shadow: 
+		0 8px 32px rgba(0, 0, 0, 0.08),
+		0 2px 16px rgba(0, 0, 0, 0.04);
+	
+	animation: slideInFromBottom 0.6s ease-out;
+	overflow: hidden;
+	position: relative;
+
+	ion-card-header {
+		padding: 1.25rem 1.25rem 0.75rem;
+		
+		@media (max-width: 480px) {
+			padding: 1rem 1rem 0.5rem;
+		}
+	}
+
+	ion-card-title {
+		font-size: 1.2rem;
+		font-weight: 700;
+		color: #1e293b;
+		margin-bottom: 0.25rem;
+		
+		@media (max-width: 480px) {
+			font-size: 1.1rem;
+		}
+		
+		@media (max-width: 360px) {
+			font-size: 1rem;
+		}
+	}
+}
+
+// Grid de acciones con diseño responsive premium
+.actions-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	padding: 0 1.25rem 1.25rem;
+	
+	// Responsive breakpoints
+	@media (max-width: 768px) {
+		gap: 0.8rem;
+		padding: 0 1rem 1rem;
+	}
+	
+	@media (max-width: 480px) {
+		gap: 0.6rem;
+		padding: 0 0.8rem 0.8rem;
+	}
+	
+	@media (max-width: 360px) {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
+		padding: 0 0.6rem 0.6rem;
+	}
+
+	.action-button {
+		margin: 0;
+		--border-radius: 16px;
+		--padding-start: 1rem;
+		--padding-end: 1rem;
+		--padding-top: 1rem;
+		--padding-bottom: 1rem;
+		
+		height: auto;
+		min-height: 65px;
+		position: relative;
+		overflow: hidden;
+		
+		background: rgba(255, 255, 255, 0.9);
+		color: #1e293b;
+		font-weight: 600;
+		font-size: 0.9rem;
+		
+		backdrop-filter: blur(15px);
+		box-shadow: 
+			0 4px 16px rgba(0, 0, 0, 0.06),
+			0 1px 4px rgba(0, 0, 0, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		
+		transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+		ion-icon {
+			font-size: 1.2rem;
+			color: #3b82f6;
+			margin-bottom: 0.25rem;
+			transition: all 0.3s ease;
+		}
+
+		// Estados de hover premium optimizados
+		&:hover {
+			transform: translate3d(0, -2px, 0) scale(1.01);
+			box-shadow: 
+				0 8px 20px rgba(0, 0, 0, 0.08),
+				0 2px 8px rgba(59, 130, 246, 0.06);
+			background: rgba(255, 255, 255, 0.95);
+			
+			ion-icon {
+				transform: translate3d(0, 0, 0) scale(1.05);
+				color: #2563eb;
+			}
+		}
+		
+		// Responsive para móviles
+		@media (max-width: 480px) {
+			--border-radius: 14px;
+			min-height: 60px;
+			font-size: 0.85rem;
+			
+			ion-icon {
+				font-size: 1.1rem;
+			}
+		}
+		
+		@media (max-width: 360px) {
+			--border-radius: 12px;
+			min-height: 55px;
+			font-size: 0.8rem;
+			--padding-top: 0.8rem;
+			--padding-bottom: 0.8rem;
+			
+			ion-icon {
+				font-size: 1rem;
+			}
+		}
+	}
+}
+
+// Variantes específicas por botón
+.add-product-btn {
+	ion-icon {
+		color: #10b981 !important;
+	}
+	
+	&:hover ion-icon {
+		color: #059669 !important;
+	}
+}
+
+.add-supplier-btn {
+	ion-icon {
+		color: #f59e0b !important;
+	}
+	
+	&:hover ion-icon {
+		color: #d97706 !important;
+	}
+}
+
+.inventory-btn {
+	ion-icon {
+		color: #8b5cf6 !important;
+	}
+	
+	&:hover ion-icon {
+		color: #7c3aed !important;
+	}
+}
+
+.reports-btn {
+	ion-icon {
+		color: #ef4444 !important;
+	}
+	
+	&:hover ion-icon {
+		color: #dc2626 !important;
+	}
+}
+
+// Animaciones de entrada escalonadas
+.action-button {
+	&:nth-child(1) { animation-delay: 0.1s; }
+	&:nth-child(2) { animation-delay: 0.2s; }
+	&:nth-child(3) { animation-delay: 0.3s; }
+	&:nth-child(4) { animation-delay: 0.4s; }
+	
+	&:active {
+		transform: scale(0.96);
+	}
+}

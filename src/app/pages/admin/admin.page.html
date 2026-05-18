@@ -1,0 +1,121 @@
+<ion-content [fullscreen]="true" class="admin-content">
+  <div class="admin-container">
+    
+    <!-- Admin Header - IGUAL AL LOGIN -->
+    <div class="admin-header">
+      <div class="brand-section">
+        <div class="logo-icon">
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+        </div>
+      </div>
+      <h1 class="admin-title">Panel de Administración</h1>
+      <p class="admin-subtitle">Gestiona usuarios y estadísticas del sistema</p>
+    </div>
+    
+    <!-- Panel de Estadísticas -->
+    <div class="stats-section">
+      <h2 class="section-title">Estadísticas del Sistema</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <h3 class="stat-title">Total Usuarios</h3>
+          </div>
+          <div class="stat-number">{{systemStats.totalUsers}}</div>
+          <p class="stat-description">Usuarios en el sistema</p>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <ion-icon name="person-add-outline"></ion-icon>
+            </div>
+            <h3 class="stat-title">Registrados</h3>
+          </div>
+          <div class="stat-number">{{systemStats.registeredUsers}}</div>
+          <p class="stat-description">Nuevos miembros</p>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+            </div>
+            <h3 class="stat-title">Administradores</h3>
+          </div>
+          <div class="stat-number">{{systemStats.predefinedUsers}}</div>
+          <p class="stat-description">Usuarios del sistema</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gestión de Usuarios -->
+    <div class="users-section">
+      <h2 class="section-title">Gestión de Usuarios</h2>
+      
+      <div class="users-container">
+        <div *ngIf="allUsers.length === 0" class="no-users-message">
+          No hay usuarios registrados en el sistema
+        </div>
+        
+        <div *ngFor="let user of allUsers" class="user-card">
+          <div class="user-header">
+            <div class="user-info">
+              <div class="user-name">{{user.name || user.username}}</div>
+              <div class="user-email" *ngIf="user.email">{{user.email}}</div>
+            </div>
+            <div class="user-role" [class]="user.role">
+              {{user.role}}
+            </div>
+          </div>
+          
+          <div class="user-details">
+            <div class="detail-item">
+              <div class="detail-label">Usuario</div>
+              <div class="detail-value">{{user.username}}</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Tipo</div>
+              <div class="detail-value">{{user.type === 'predefined' ? 'Sistema' : 'Registrado'}}</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Registro</div>
+              <div class="detail-value">{{user.registrationDate}}</div>
+            </div>
+            <div class="detail-item" *ngIf="user.lastLogin">
+              <div class="detail-label">Último acceso</div>
+              <div class="detail-value">{{user.lastLogin}}</div>
+            </div>
+          </div>
+          
+          <div class="user-actions">
+            <button 
+              *ngIf="user.type !== 'predefined'"
+              class="role-button"
+              (click)="changeUserRole(user)">
+              Cambiar Rol
+            </button>
+            <button 
+              class="role-button"
+              style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);"
+              (click)="deleteUser(user)"
+              [disabled]="user.type === 'predefined'">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+      <button class="logout-button" (click)="logout()">
+        <ion-icon name="log-out-outline" style="margin-right: 8px;"></ion-icon>
+        Cerrar Sesión
+      </button>
+    </div>
+    
+  </div>
+</ion-content>

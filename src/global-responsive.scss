@@ -1,0 +1,134 @@
+/* 📱 RESPONSIVE GLOBAL FORZADO PARA TODOS LOS DISPOSITIVOS MÓVILES */
+
+/* Meta viewport para asegurar responsive */
+html {
+  font-size: 16px !important;
+}
+
+/* Forzar responsive en ion-content */
+ion-content {
+  --padding-start: 0px !important;
+  --padding-end: 0px !important;
+  --padding-top: 0px !important;
+  --padding-bottom: 0px !important;
+}
+
+/* Breakpoints mega forzados */
+@media screen and (max-width: 768px) {
+  ion-content {
+    --padding-start: 8px !important;
+    --padding-end: 8px !important;
+  }
+  
+  ion-card {
+    margin: 8px !important;
+    border-radius: 12px !important;
+  }
+  
+  ion-button {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  ion-content {
+    --padding-start: 4px !important;
+    --padding-end: 4px !important;
+  }
+  
+  ion-card {
+    margin: 4px !important;
+    border-radius: 8px !important;
+  }
+  
+  ion-button {
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
+  }
+  
+  ion-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .product-card {
+    margin: 2px !important;
+    width: calc(100% - 4px) !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  ion-content {
+    --padding-start: 2px !important;
+    --padding-end: 2px !important;
+  }
+  
+  ion-card {
+    margin: 2px !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  ion-content {
+    --padding-start: 1px !important;
+    --padding-end: 1px !important;
+  }
+  
+  ion-card {
+    margin: 1px !important;
+  }
+  
+  ion-button {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+  }
+}
+
+/* Forzar orientación portrait */
+@media screen and (orientation: portrait) {
+  .login-content,
+  .categories-container,
+  .products-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Forzar responsive para grids */
+@media screen and (max-width: 768px) {
+  .categories-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  
+  .products-grid,
+  .products-list {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .product-card {
+    margin: 4px !important;
+    width: calc(100% - 8px) !important;
+  }
+  
+  .category-card {
+    width: 100% !important;
+    margin: 0 !important;
+    min-height: 120px !important;
+  }
+}
+
+/* Override para Ionic específico */
+@media screen and (max-device-width: 768px) {
+  ion-app {
+    font-size: 14px !important;
+  }
+  
+  .ion-page {
+    overflow-x: hidden !important;
+  }
+}

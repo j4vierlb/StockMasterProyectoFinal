@@ -1,0 +1,82 @@
+<ion-content [fullscreen]="true" class="home-content mobile-optimized" scrollY="true">
+  <div class="page-container">
+    
+    <!-- Home Header Mejorado -->
+    <div class="home-header">
+      <div class="header-content">
+        <div class="welcome-section">
+          <div class="greeting-time">{{ getGreeting() }}</div>
+          <h1 class="welcome-title">{{ userName }}!</h1>
+          <p class="welcome-subtitle">Aquí tienes el resumen de tu inventario</p>
+        </div>
+        <div class="header-actions">
+          <button class="notification-btn" (click)="showNotifications()">
+            <ion-icon name="notifications-outline"></ion-icon>
+            <span class="notification-badge">3</span>
+          </button>
+          <div class="user-avatar">
+            <span>{{ getUserInitials() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Grid -->
+    <div class="home-grid">
+      
+      <!-- Metrics Card -->
+      <div class="home-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="analytics-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">Métricas</h3>
+        </div>
+        <div class="card-content">
+          <app-home-metrics></app-home-metrics>
+        </div>
+      </div>
+      
+      <!-- Quick Actions Card -->
+      <div class="home-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="flash-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">Acciones Rápidas</h3>
+        </div>
+        <div class="card-content">
+          <app-home-quick-actions></app-home-quick-actions>
+        </div>
+      </div>
+      
+      <!-- Recent Activities Card -->
+      <div class="home-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+          <h3 class="card-title">Actividades Recientes</h3>
+        </div>
+        <div class="card-content">
+          <app-home-recent-activities></app-home-recent-activities>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Action Buttons Section -->
+    <div class="action-buttons-section">
+      <button class="advanced-button" (click)="goToAdvancedFeatures()">
+        <ion-icon name="settings-outline"></ion-icon>
+        <span>Funcionalidades Avanzadas</span>
+      </button>
+      
+      <button class="logout-button" (click)="logout()">
+        <ion-icon name="power-outline"></ion-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+
+  </div>
+</ion-content>

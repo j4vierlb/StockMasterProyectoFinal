@@ -1,0 +1,156 @@
+<ion-header class="glass-header">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" class="back-button">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="page-title">
+      <ion-icon name="cube-outline" class="title-icon"></ion-icon>
+      Productos
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addProduct()" class="add-button">
+        <ion-icon name="add-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="glass-content mobile-optimized" scrollY="true">
+  <!-- Sección de búsqueda y filtros -->
+  <div class="search-section">
+    <ion-card class="search-card">
+      <ion-card-content>
+        <div class="search-container">
+          <ion-searchbar 
+            [(ngModel)]="searchTerm" 
+            (ionInput)="filterProducts()"
+            placeholder="Buscar productos..."
+            show-clear-button="focus"
+            class="glass-searchbar">
+          </ion-searchbar>
+          
+          <ion-select 
+            [(ngModel)]="selectedCategory" 
+            (ionChange)="filterProducts()"
+            interface="popover"
+            placeholder="Categoría"
+            class="category-filter">
+            <ion-select-option *ngFor="let category of categories" [value]="category.value">
+              {{ category.label }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- 🌐 Toggle para fuente de datos -->
+  <!-- Sección de acciones rápidas -->
+  <div class="actions-section">
+    <ion-card class="actions-card">
+      <ion-card-content>
+        <div class="actions-grid">
+          <ion-button 
+            fill="solid" 
+            color="primary" 
+            size="default"
+            (click)="showLocalProducts()"
+            [class.active]="!showingMarket">
+            <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+            Mi Inventario
+          </ion-button>
+          
+          <ion-button 
+            fill="outline" 
+            color="secondary" 
+            size="default"
+            (click)="showMarketProducts()"
+            [class.active]="showingMarket">
+            <ion-icon name="storefront-outline" slot="start"></ion-icon>
+            Ver Mercado
+          </ion-button>
+        </div>
+        
+        <div class="current-view-info">
+          <div class="view-indicator" 
+               [class.market-mode]="showingMarket" 
+               [class.local-mode]="!showingMarket"
+               [class.sqlite-mode]="!showingMarket && currentStorageType === 'sqlite'"
+               [class.localstorage-mode]="!showingMarket && currentStorageType === 'localstorage'">
+            <ion-icon [name]="storageInfo.icon" class="mode-icon"></ion-icon>
+            <div class="storage-details">
+              <span class="storage-label">{{ storageInfo.label }}</span>
+              <small class="storage-description">{{ storageInfo.description }}</small>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Stats rápidas -->
+  <div class="stats-section">
+    <ion-card class="stats-card">
+      <ion-card-content>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">{{ filteredProducts.length }}</div>
+            <div class="stat-label">Productos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getLowStockCount() }}</div>
+            <div class="stat-label">Bajo Stock</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ getInventoryValue() | currency:'CLP':'symbol':'1.0-0' }}</div>
+            <div class="stat-label">Valor Total</div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="products-section">
+    <div *ngIf="isLoading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando productos...</p>
+    </div>
+
+    <div *ngIf="!isLoading && filteredProducts.length === 0" class="empty-state">
+      <ion-card class="empty-card">
+        <ion-card-content>
+          <ion-icon name="cube-outline" class="empty-icon"></ion-icon>
+          <h3>No hay productos</h3>
+          <p *ngIf="searchTerm">No se encontraron productos que coincidan con tu búsqueda.</p>
+          <p *ngIf="!searchTerm">Comienza agregando tu primer producto al inventario.</p>
+          <ion-button (click)="addProduct()" color="primary" class="add-first-button">
+            <ion-icon name="add-outline" slot="start"></ion-icon>
+            Agregar Producto
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="!isLoading && filteredProducts.length > 0" class="products-list">
+      <app-product-card 
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        [showingMarket]="showingMarket"
+        (editProduct)="editProduct($event)"
+        (deleteProduct)="deleteProduct($event)"
+        (addPhoto)="addProductPhoto($event)"
+        (removePhoto)="removeProductPhoto($event)">
+      </app-product-card>
+    </div>
+  </div>
+
+  <!-- Botón flotante para agregar -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addProduct()" color="primary" class="glass-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

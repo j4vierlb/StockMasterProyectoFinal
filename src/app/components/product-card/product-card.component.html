@@ -1,0 +1,112 @@
+<div class="product-card">
+  <ion-card-content>
+    <div class="product-header">
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-category">
+          <ion-icon name="pricetag-outline"></ion-icon>
+          {{ product.category }}
+        </p>
+      </div>
+      <div class="product-actions" *ngIf="!showingMarket">
+        <ion-button fill="clear" size="small" (click)="onEdit()" color="primary">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" size="small" (click)="onDelete()" color="danger">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <div class="detail-row">
+        <div class="detail-item">
+          <ion-icon name="cube-outline" class="detail-icon"></ion-icon>
+          <div class="detail-info">
+            <span class="detail-label">Stock</span>
+            <span class="detail-value stock-value" [class]="product.stock < 10 ? 'low-stock' : 'normal-stock'">
+              {{ product.stock }} unidades
+            </span>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <ion-icon name="cash-outline" class="detail-icon"></ion-icon>
+          <div class="detail-info">
+            <span class="detail-label">Precio</span>
+            <span class="detail-value">{{ formatCurrency(product.price) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-item">
+          <ion-icon name="location-outline" class="detail-icon"></ion-icon>
+          <div class="detail-info">
+            <span class="detail-label">Ubicación</span>
+            <span class="detail-value">{{ product.location }}</span>
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <ion-badge [color]="getStatusColor(product.status)" class="status-badge">
+            {{ product.status }}
+          </ion-badge>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-item full-width">
+          <ion-icon name="calculator-outline" class="detail-icon"></ion-icon>
+          <div class="detail-info">
+            <span class="detail-label">Valor Total</span>
+            <span class="detail-value total-value">{{ formatCurrency(product.price * product.stock) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de foto -->
+      <div class="product-photo-section">
+        <div class="photo-header">
+          <ion-icon name="camera-outline" class="photo-icon"></ion-icon>
+          <span class="photo-label">Foto del Producto</span>
+        </div>
+        
+        <div class="photo-container" *ngIf="product.photo || product.image; else noPhoto">
+          <img [src]="product.photo || product.image" alt="Foto de {{ product.name }}" class="product-image">
+          <div class="photo-actions" *ngIf="!showingMarket">
+            <ion-button fill="clear" size="small" (click)="onAddPhoto()" color="primary">
+              <ion-icon name="camera-outline"></ion-icon>
+              Cambiar
+            </ion-button>
+            <ion-button fill="clear" size="small" (click)="onRemovePhoto()" color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+          <div class="market-photo-label" *ngIf="showingMarket">
+            <ion-badge color="secondary" class="market-badge">
+              <ion-icon name="storefront" slot="start"></ion-icon>
+              Producto del Mercado
+            </ion-badge>
+          </div>
+        </div>
+        
+        <ng-template #noPhoto>
+          <div class="no-photo-container">
+            <ion-icon name="image-outline" class="no-photo-icon"></ion-icon>
+            <p class="no-photo-text">Sin foto</p>
+            <ion-button *ngIf="!showingMarket" fill="outline" size="small" (click)="onAddPhoto()" color="primary">
+              <ion-icon name="camera-outline" slot="start"></ion-icon>
+              Agregar Foto
+            </ion-button>
+            <ion-badge *ngIf="showingMarket" color="medium" class="no-photo-badge">
+              <ion-icon name="storefront" slot="start"></ion-icon>
+              Producto sin imagen
+            </ion-badge>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ion-card-content>
+</div>

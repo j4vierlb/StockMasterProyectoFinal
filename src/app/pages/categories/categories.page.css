@@ -1,0 +1,19 @@
+/* CSS plano para la página de categorías */
+ion-content {
+  background: #ffffff !important;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.category-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}

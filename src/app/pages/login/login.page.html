@@ -1,0 +1,97 @@
+<ion-content [fullscreen]="true" class="login-content" scrollY="true">
+  <div class="login-container mobile-optimized">
+    
+    <!-- Header personalizado -->
+    <div class="login-header">
+      <div class="brand-section">
+        <div class="logo-icon">
+          <ion-icon name="cube-outline"></ion-icon>
+        </div>
+        <div class="brand-name">STOCKMASTER</div>
+        <div class="brand-tagline">Gestión Inteligente de Inventario ✏️</div>
+      </div>
+      
+      <div class="welcome-text">
+        <h1>¡Bienvenido de vuelta!</h1>
+        <p>Ingresa tus credenciales para continuar</p>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      
+      <!-- Campo Usuario -->
+      <div class="form-group">
+        <div class="input-container">
+          <ion-icon name="person-outline" class="input-icon"></ion-icon>
+          <input 
+            type="text" 
+            formControlName="username"
+            placeholder="Usuario o email"
+            class="form-input"
+            autocomplete="username"
+          >
+        </div>
+      </div>
+
+      <!-- Campo Contraseña -->
+      <div class="form-group">
+        <div class="password-container">
+          <div class="input-container">
+            <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+            <input 
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Contraseña"
+              class="form-input"
+              autocomplete="current-password"
+            >
+          </div>
+          <button 
+            type="button" 
+            class="password-toggle-btn"
+            (click)="togglePasswordVisibility()">
+            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Recordar y Olvidar contraseña -->
+      <div class="remember-section">
+        <div class="checkbox-container">
+          <input 
+            type="checkbox" 
+            id="remember" 
+            formControlName="rememberMe"
+          >
+          <label for="remember">Recordarme</label>
+        </div>
+        <button type="button" class="forgot-link" (click)="navigateToResetPassword()">
+          ¿Olvidaste tu contraseña?
+        </button>
+      </div>
+
+      <!-- Botón de Login -->
+      <button 
+        type="submit" 
+        class="login-button"
+        [disabled]="!loginForm.valid || isLoading">
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+        <span *ngIf="isLoading">Iniciando...</span>
+      </button>
+
+    </form>
+
+    <!-- Enlaces de autenticación -->
+    <div class="auth-links">
+      <div class="divider">
+        <span>¿No tienes cuenta?</span>
+      </div>
+      
+      <button type="button" class="register-link" (click)="navigateToRegister()">
+        <div class="register-text">Crear cuenta nueva</div>
+      </button>
+    </div>
+
+  </div>
+</ion-content>

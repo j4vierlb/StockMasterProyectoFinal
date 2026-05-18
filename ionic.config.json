@@ -1,0 +1,7 @@
+{
+  "name": "stockmaster",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

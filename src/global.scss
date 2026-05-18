@@ -1,0 +1,90 @@
+// Importar variables y mixins del sistema de diseño
+@use './theme/variables.scss' as *;
+@use './theme/mixins.scss' as *;
+
+// Importar responsive global forzado
+@use './global-responsive.scss';
+
+body, .login-content {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #3a1c71 0%, #040404 50%, #1e90ff 100%);
+}
+
+ion-content {
+	--background: transparent !important;
+	background: transparent !important;
+}
+
+// Eliminar efectos ripple/liquid globalmente
+ion-button,
+button,
+.clickable,
+[button] {
+	--ripple-color: transparent !important;
+	--border-style: none !important;
+}
+
+ion-button::part(native) {
+	--ripple-color: transparent !important;
+}
+
+// Optimizaciones de performance global
+* {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	perspective: 1000;
+}
+
+// Optimización de scroll en móviles
+ion-content {
+	-webkit-overflow-scrolling: touch;
+}
+
+// Optimización de hardware acceleration
+.metric-card,
+.action-button,
+.activities-card,
+.login-container,
+.register-container {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-font-smoothing: antialiased;
+}
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
